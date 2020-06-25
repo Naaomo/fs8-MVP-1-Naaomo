@@ -18,7 +18,7 @@ con.connect(function(err) {
   if (err) throw err;
   console.log("Connected!");
 
-  //TODO fix this
+  //TODO fix this for running purpose
   let sql =
     "DROP TABLE if exists pets; CREATE TABLE pets(id INT NOT NULL AUTO_INCREMENT, petname VARCHAR(40) not null, DAY1 BOOLEAN, PRIMARY KEY (id));";
   con.query(sql, function(err, result) {
