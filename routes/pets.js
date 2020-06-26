@@ -27,38 +27,72 @@ router.get('/', function (req, res, next) {
 router.get('/:id', function (req, res, next) {
     db(`SELECT * FROM fedcheckbox INNER JOIN pets ON fedcheckbox.pet_id = pets.id WHERE pet_id = ${req.params.id};`)
         .then(result => {
-            //TODO ASK WHY NOT WORKING
-            // res.send({
-            //     pet_id : result.data[0].pet_id,
-            //     petname : result.data[0].petname,
-            //     // days: {
-            //     //     day1: result.data[0].DAY1,
-            //     //     day2: result.data[0].DAY2,
-            //     //     day3: result.data[0].DAY3,
-            //     //     day4: result.data[0].DAY4,
-            //     //     day5: result.data[0].DAY5,
-            //     //     day6: result.data[0].DAY6,
-            //     //     day7: result.data[0].DAY7
-            //     // }
-            // })
-            res.send(result.data[0])
+            res.send({
+                pet_id: result.data[0].pet_id,
+                petname: result.data[0].petname,
+                days: {
+                    Monday: result.data[0].Monday,
+                    Tuesday: result.data[0].Tuesday,
+                    Wednesday: result.data[0].Wednesday,
+                    Thursday: result.data[0].Thursday,
+                    Friday: result.data[0].Friday,
+                    Saturday: result.data[0].Saturday,
+                    Sunday: result.data[0].Sunday
+                }
+            })
+            //  res.send(result.data[0])
 
         })
         .catch(err => res.status(500).send(err))
 });
 
 // UPDATE checkbox for specific pet
-// Update the days one by one?
-// if all checked???
-router.put("/:id", (req, res) => {
-    db(`UPDATE fedcheckbox SET Day1 = !Day1 WHERE id='${req.params.id}';`)
-        .then(result => {
-            res.send(result.data);
+
+//do this TO BE SAFE, so users can't modify
+const dayToColumn = {
+    Monday: `Monday`,
+    Tuesday: `Tuesday`,
+    Wednesday: `Wednesday`,
+    Thursday: `Thursday`,
+    Friday: `Friday`,
+    Saturday: `Saturday`,
+    Sunday: `Sunday`,
+}
+
+router.put("/:id/:day", (req, res, next) => {
+
+    const column = dayToColumn[req.params.day];
+
+    //To be safe, so other people can't simply modify it
+    // db(`UPDATE fedcheckbox SET ? = !? WHERE id =?;`,[column, column, req.params.id])
+    db(`UPDATE fedcheckbox SET ${column} = !${column} WHERE id= ${req.params.id};`)
+        //don't need var but still need the result, putting a var gives an error cuz not using it anywhere.
+        .then(() => {
+            db(`SELECT * FROM fedcheckbox WHERE id =${req.params.id};`)
+                .then(result => {
+                    res.send({
+                        Monday: result.data[0].Monday,
+                        Tuesday: result.data[0].Tuesday,
+                        Wednesday: result.data[0].Wednesday,
+                        Thursday: result.data[0].Thursday,
+                        Friday: result.data[0].Friday,
+                        Saturday: result.data[0].Saturday,
+                        Sunday: result.data[0].Sunday
+                    });
+                })
             //return res.send(result.data)
             //res.status(200).send('Fed for today')
         })
         .catch(err => res.status(500).send(err));
 })
 
+//reset checkbox
+//cannot use put???
+router.post("/reset/:id", (req, res, next) => {
+    db(`UPDATE fedcheckbox SET Monday = 0, Tuesday = 0, Wednesday = 0, Thursday = 0, Friday = 0, Saturday = 0, Sunday = 0 WHERE id =${req.params.id};`)
+        .then(result => {
+            res.send({ok: true})
+        })
+})
 
 module.exports = router;

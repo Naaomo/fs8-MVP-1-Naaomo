@@ -7,6 +7,7 @@ class App extends React.Component {
         this.state = {
             pets: [],
             pet: {},
+            loading: true,
         }
     }
 
@@ -31,17 +32,14 @@ class App extends React.Component {
             .then(res => res.json())
             .then(res => {
                 // console.log(res.days.day1)
-                this.setState({pet: res});
+                console.log(res)
+                this.setState({pet: res, loading: false});
             });
     };
 
-
-    //can I put it as a function
-    //instead of update(id)
-    //what to put in here???
-    //how to reset?
-    updateCheckbox = id => {
-        fetch(`/pets/${id}`, {
+    updateCheckbox = day => {
+        //fetch(`/pets/${id}`, {
+        fetch(`/pets/2/${day}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -50,8 +48,38 @@ class App extends React.Component {
             // upon success, update checkbox
             .then(res => res.json())
             .then(json => {
-                //fedcheckbox:json / pets:json
-                this.setState({pet: json});
+                this.setState(prevState => ({pet: {...prevState.pet, days: json}}));
+            })
+            .catch(error => {
+                // upon failure, show error message
+                console.log(error);
+            });
+    }
+
+    //ResetCheckbox
+    componentDidUpdate() {
+        if (Object.values(this.state.pet.days).every(day => day)) {
+            this.resetCheckbox()
+        }
+    }
+
+    resetCheckbox = () => {
+        fetch(`/pets/reset/2`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+            // upon success, update checkbox
+            .then(res => res.json())
+            .then(json => {
+                this.setState(prevState => ({
+                    pet: {
+                        ...prevState.pet,
+                        days: {Monday: 0, Tuesday: 0, Wednesday: 0, Thursday: 0, Friday: 0, Saturday: 0, Sunday: 0}
+                    }
+                }));
+                // alert(`whatever`)
             })
             .catch(error => {
                 // upon failure, show error message
@@ -63,6 +91,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
+
                 <div class="container text-center">
                     {/*TODO PUT INTO A COMPONENT*/}
                     <h2>Cat's name: {this.state.pet.petname}</h2>
@@ -70,68 +99,26 @@ class App extends React.Component {
                         Have you fed your cats yet?
                     </div>
                     <div className="container d-flex justify-content-center">
-                        <ul class="list-group list-group-flush col-2 rounded">
-                            <li className="list-group-item">
-                                {/*check box TODO insert value*/}
-                                <div class="custom-control custom-checkbox">
-                                    <input type="checkbox" class="custom-control-input" checked={this.state.pet.DAY1}/>
-                                    <label class="custom-control-label">Day 1</label>
-                                </div>
-                            </li>
-                            <li className="list-group-item">
-                                {/*check box*/}
-                                <div className="custom-control custom-checkbox">
-                                    <input type="checkbox" className="custom-control-input"
-                                           checked={this.state.pet.DAY2}/>
-                                    <label className="custom-control-label">Day 2</label>
-                                </div>
-                            </li>
-                            <li className="list-group-item">
-                                {/*check box*/}
-                                <div className="custom-control custom-checkbox">
-                                    <input type="checkbox" className="custom-control-input"
-                                           checked={this.state.pet.DAY3}/>
-                                    <label className="custom-control-label">Day 3</label>
-                                </div>
-                            </li>
-                            <li className="list-group-item">
-                                {/*check box*/}
-                                <div className="custom-control custom-checkbox">
-                                    <input type="checkbox" className="custom-control-input"
-                                           checked={this.state.pet.DAY4}/>
-                                    <label className="custom-control-label">Day 4</label>
-                                </div>
-                            </li>
-                            <li className="list-group-item">
-                                {/*check box*/}
-                                <div className="custom-control custom-checkbox">
-                                    <input type="checkbox" className="custom-control-input"
-                                           checked={this.state.pet.DAY5}/>
-                                    <label className="custom-control-label">Day 5</label>
-                                </div>
-                            </li>
-                            <li className="list-group-item">
-                                {/*check box*/}
-                                <div className="custom-control custom-checkbox">
-                                    <input type="checkbox" className="custom-control-input"
-                                           checked={this.state.pet.DAY6}/>
-                                    <label className="custom-control-label">Day 6</label>
-                                </div>
-                            </li>
-                            <li className="list-group-item">
-                                {/*check box*/}
-                                <div className="custom-control custom-checkbox">
-                                    <input type="checkbox" className="custom-control-input"
-                                           checked={this.state.pet.DAY7}/>
-                                    <label className="custom-control-label">Day 7</label>
-                                </div>
-                            </li>
+                        <ul className="list-group list-group-flush col-3 rounded">
+                            {/*need loading as it's not fetched yet.*/}
+                            {(!this.state.loading) && Object.entries(this.state.pet.days).map(([day, value]) =>
+                                <li className="list-group-item" key={day}>
+                                    {/*check box TODO insert value*/}
+                                    <div class="d-flex justify-content-between">
+                                        <input type="checkbox"
+                                               checked={value}
+                                               onChange={() => this.updateCheckbox(day)}
+                                        />
+                                        <label>{day}</label>
+                                    </div>
+                                </li>
+                            )}
                         </ul>
                     </div>
                 </div>
             </div>
-    );
+        );
     }
-    }
+}
 
-    export default App;
+export default App;
