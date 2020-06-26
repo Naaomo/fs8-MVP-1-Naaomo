@@ -18,14 +18,20 @@ con.connect(function (err) {
     if (err) throw err;
     console.log("Connected!");
 
-    //TODO fix this for running purpose
     let sql =
-        "DROP TABLE if exists pets; CREATE TABLE pets(id INT NOT NULL AUTO_INCREMENT, petname VARCHAR(40) not null, DAY1 BOOLEAN, PRIMARY KEY (id));";
+        "DROP TABLE if exists pets; CREATE TABLE pets(id INT NOT NULL AUTO_INCREMENT, petname VARCHAR(40) not null, PRIMARY KEY (id));";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table creation `pets` was successful!");
 
-        console.log("Closing...");
+
+        sql =
+            "DROP TABLE if exists fedcheckbox; CREATE TABLE fedcheckbox(id INT NOT NULL AUTO_INCREMENT, pet_id INT NOT NULL, Monday BOOLEAN, Tuesday BOOLEAN, Wednesday BOOLEAN, Thursday BOOLEAN,Friday BOOLEAN, Saturday BOOLEAN, Sunday BOOLEAN, PRIMARY KEY (id));";
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("Table creation `fedcheckbox` was successful!");
+
+            console.log("Closing...");
     });
 
     con.end();

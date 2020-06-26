@@ -58,8 +58,8 @@ const dayToColumn = {
     Saturday: `Saturday`,
     Sunday: `Sunday`,
 }
-
-router.put("/:id/:day", (req, res, next) => {
+//Need a solid route
+router.put("/update/:id/:day", (req, res, next) => {
 
     const column = dayToColumn[req.params.day];
 
@@ -87,7 +87,7 @@ router.put("/:id/:day", (req, res, next) => {
 })
 
 //reset checkbox
-//cannot use put???
+//Initially can't use put due to conflict (changed it to update/...)
 router.post("/reset/:id", (req, res, next) => {
     db(`UPDATE fedcheckbox SET Monday = 0, Tuesday = 0, Wednesday = 0, Thursday = 0, Friday = 0, Saturday = 0, Sunday = 0 WHERE id =${req.params.id};`)
         .then(result => {

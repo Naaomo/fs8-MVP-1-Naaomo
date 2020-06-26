@@ -6,3 +6,13 @@ body {
     background-position: 0% 25%;
     background-image: url("https://images5.alphacoders.com/785/thumb-1920-785941.jpg");
 }
+
+.img-fluid{
+    height:40px;
+}
+.bg-cute{
+    background-color: lightblue !important;
+}
+.icon{
+    color:rosybrown !important;
+}
