@@ -6,8 +6,10 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-    body: 'url("https://c1.wallpaperflare.com/preview/593/563/797/black-cat-view-cat-eyes.jpg") black no-repeat',
-    text: '#FAFAFA',
+    body: 'url("https://i.pinimg.com/originals/3e/68/f7/3e68f7c0e8bf0bb1ec2a3a5910126a40.gif") no-repeat #141514 bottom right',
+    // text color is white
+    // text: '#FAFAFA',
+    text:'gray',
     toggleBorder: '#6B8096',
     gradient: 'linear-gradient(#091236, #1E215D)',
 }

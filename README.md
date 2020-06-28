@@ -4,6 +4,8 @@ Your one stop for all your pet's needs.
 ### Features includes:
 * Daily fed checkbox [100%]
 * Randomized cat facts [100%]
+* Toggle between light & dark theme [80%]
+![LIGHT MODE](https://i.imgur.com/wALuF1c.jpg) ![DARK MODE](https://i.imgur.com/XgnrHaw.jpg)
 
 # Getting started
 * `git clone` the repository
@@ -33,7 +35,7 @@ TODO complete route pic
 ![ROUTE FULL]()
 ![ROUTE STEP 1](https://i.imgur.com/eG1oFsV.jpg)
 
-# Future feature [2%]
+# Future feature [12%]
 ![FINAL](https://i.imgur.com/7M4XTUS.jpg)
 * User login interface 
 * Being able to submit multiple pets 
@@ -44,7 +46,6 @@ TODO complete route pic
 * Hiring dog walker, pet sitter
 * Search for pet hotel near you
 * Enable to contact nearby rescue shelter for strays
-* Toggle between dark and light mode 
-![LIGHT MODE]()![DARK MODE]()
+
 
 _This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._
