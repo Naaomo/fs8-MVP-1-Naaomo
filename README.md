@@ -1,4 +1,4 @@
-# Pet tracker website
+# :guide_dog: Pet tracker website :cat2:
 Your one stop for all your pet's needs.
 
 ### Features includes:
