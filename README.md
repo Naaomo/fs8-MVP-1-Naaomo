@@ -28,12 +28,15 @@ Your one stop for all your pet's needs.
 ![MOCK UP STEP 3]()
 
 # Userflow
-TODO make a flow chart online (check student pack)
-
-# Routes 
-TODO complete route pic
-![ROUTE FULL]()
-![ROUTE STEP 1](https://i.imgur.com/eG1oFsV.jpg)
+####Current
+![Current user flow](https://i.imgur.com/h85Q4EL.jpg)
+####Final Mock up
+![Full user flow](https://i.imgur.com/qzrDuUO.jpg)
+# Route
+![Route STEP 1](https://i.imgur.com/5qfLAH7.jpg)
+# Database 
+![DATABASE FULL]()
+![DATABASE STEP 1](https://i.imgur.com/eG1oFsV.jpg)
 
 # Future feature [12%]
 ![FINAL](https://i.imgur.com/7M4XTUS.jpg)

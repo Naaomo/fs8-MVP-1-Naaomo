@@ -4,8 +4,7 @@ const db = require("../model/helper");
 
 /* GET the list of pets?(necessary?) */
 router.get('/', function (req, res, next) {
-    db(`SELECT *
-        FROM pets;`)
+    db(`SELECT * FROM pets;`)
         .then(result => {
             res.send(result.data)
         })
@@ -21,6 +20,31 @@ router.get('/', function (req, res, next) {
 //         .catch(err => res.status(500).send(err))
 // });
 
+//CREATE new pet
+//TODO fix option menu
+router.post("/", (req, res, next) => {
+    db(
+        `INSERT INTO pets(petname) VALUES('${req.body.petname}','${req.body.pettype}');`
+    )
+        .then(results => {
+            if (results.error) {
+                res.status(404).send({ error: results.error });
+            } else {
+                //? This it working but using the var is not working.
+                // db(`SELECT * FROM students;`)
+                //   .then(results => {
+                //     res.send(results.data);
+                //   })
+                //   .catch(err => res.status(500).send(err));
+                //TODO: fix this
+                res
+                    .status(200)
+                    .send({ msg: `${req.body.firstname} joined the class.` })
+                    .catch(error => res.status(500).send(error));
+            }
+        })
+        .catch(error => res.status(500).send(error));
+});
 
 //GET checkbox for a pet
 //just GET EVERYTHING from table
@@ -88,7 +112,7 @@ router.put("/update/:id/:day", (req, res, next) => {
 
 //reset checkbox
 //Initially can't use put due to conflict (changed it to update/...)
-router.post("/reset/:id", (req, res, next) => {
+router.put("/reset/:id", (req, res, next) => {
     db(`UPDATE fedcheckbox SET Monday = 0, Tuesday = 0, Wednesday = 0, Thursday = 0, Friday = 0, Saturday = 0, Sunday = 0 WHERE id =${req.params.id};`)
         .then(result => {
             res.send({ok: true})

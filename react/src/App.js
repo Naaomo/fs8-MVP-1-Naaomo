@@ -1,11 +1,17 @@
-//Use hook
+//Use hook for style components
 import React, { useState } from 'react';
 // import React from 'react';
+//import CSS
 import './App.css';
+//import for theme
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './component/theme';
 import {GlobalStyles} from './component/DefaultTheme';
+//import components
 import Catfacts from "./component/catfacts";
+import Checkbox from "./component/checkbox";
+import PetSubmit from "./component/PetSubmit";
+//import extra
 import Swal from 'sweetalert2';
 
 // With style components
@@ -56,6 +62,7 @@ class App extends React.Component {
     }
 
     componentDidMount() {
+        //this.getPets();
         this.getPet();
         // this.getCatFacts();
     }
@@ -109,7 +116,7 @@ class App extends React.Component {
 
     resetCheckbox = () => {
         fetch(`/pets/reset/2`, {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json"
             }
@@ -150,37 +157,17 @@ class App extends React.Component {
         return (
             <div>
             <LD/>
+            {/*<PetSubmit/>*/}
                 {/*good practice way*/}
                 {/*<button*/}
                 {/*    className={this.state.light ? "btn btn-info" : "btn btn-primary bg-primary"}*/}
                 {/*    onClick={() => this.ToggleTheme()}>theme*/}
                 {/*</button>*/}
                 <div class="container text-center">
-                    {/*TODO PUT INTO A COMPONENT*/}
                     <h2>Cat's name: {this.state.pet.petname}</h2>
-                    <div class="container d-flex justify-content-center">
-                        Have you fed your cat yet?
-                    </div>
-                    <div className="container d-flex justify-content-center">
-                        <ul className="list-group list-group-flush col-3 rounded">
-                            {/*need loading as it's not fetched yet.*/}
-                            {(!this.state.loading) && Object.entries(this.state.pet.days).map(([day, value]) =>
-                                <li className="list-group-item" key={day}>
-                                    {/*check box*/}
-                                    <div className="container d-flex justify-content-lg-between mt-2">
-                                        <div className="pretty p-icon p-round p-tada">
-                                            <input type="checkbox" checked={value}
-                                                   onChange={() => this.updateCheckbox(day)}/>
-                                            <div className="state p-primary-o ">
-                                                <i className="icon mdi mdi-paw"></i>
-                                                <label>{day}</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            )}
-                        </ul>
-                    </div>
+                    <Checkbox UpdateCheckbox ={Checkedday => this.updateCheckbox(Checkedday)}
+                              loading = {this.state.loading}
+                              Checkboxes = {this.state.pet}/>
                 </div>
                 <div><Catfacts/></div>
             </div>

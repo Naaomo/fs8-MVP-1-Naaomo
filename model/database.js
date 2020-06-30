@@ -23,6 +23,15 @@ con.connect(function (err) {
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table creation `pets` was successful!");
+    });
+
+        sql =
+            "INSERT INTO pets (petname) VALUE ("May"); " + "INSERT INTO pets (petname) VALUE ("Mimi")); ";
+        con.query(sql, function (err, result) {
+            if (err) throw err;
+            console.log("Insert for `pets` was successful!");
+
+        });
 
 
         sql =
@@ -32,7 +41,22 @@ con.connect(function (err) {
             console.log("Table creation `fedcheckbox` was successful!");
 
             console.log("Closing...");
-    });
 
-    con.end();
-});
+            // let sql =
+            //     "DROP TABLE if exists pettype; CREATE TABLE pettype(id INT NOT NULL AUTO_INCREMENT, petname VARCHAR(40) not null, PRIMARY KEY (id));";
+            // con.query(sql, function (err, result) {
+            //     if (err) throw err;
+            //     console.log("Table creation `pets` was successful!");
+            //
+            // });
+            // let sql =
+            //     "INSERT INTO pettype (pet_type) VALUE ("Cat"); " +
+            // "INSERT INTO pettype (pet_type) VALUE ("Dog")); ";
+            // con.query(sql, function (err, result) {
+            //     if (err) throw err;
+            //     console.log("Table creation `pets` was successful!");
+
+        });
+
+        con.end();
+    });
