@@ -11,6 +11,15 @@ router.get('/', function (req, res, next) {
         .catch(err => res.status(500).send(err))
 });
 
+//GET all pet type
+router.get('/pettype', function (req, res, next) {
+    db(`SELECT * FROM pettype;`)
+        .then(result => {
+            res.send(result.data)
+        })
+        .catch(err => res.status(500).send(err))
+});
+
 //GET a specific pet
 // router.get('/:id',function(req, res, next) {
 //     db(`SELECT * FROM pets WHERE id=${req.params.id};`)
@@ -21,25 +30,17 @@ router.get('/', function (req, res, next) {
 // });
 
 //CREATE new pet
-//TODO fix option menu
-router.post("/", (req, res, next) => {
+router.post("/createpet", (req, res, next) => {
     db(
-        `INSERT INTO pets(petname) VALUES('${req.body.petname}','${req.body.pettype}');`
+        `INSERT INTO pets(petname, pettype_id) VALUES('${req.body.petname}','${req.body.pettype_id}');`
     )
         .then(results => {
             if (results.error) {
                 res.status(404).send({ error: results.error });
             } else {
-                //? This it working but using the var is not working.
-                // db(`SELECT * FROM students;`)
-                //   .then(results => {
-                //     res.send(results.data);
-                //   })
-                //   .catch(err => res.status(500).send(err));
-                //TODO: fix this
                 res
                     .status(200)
-                    .send({ msg: `${req.body.firstname} joined the class.` })
+                    .send({ msg: `${req.body.petname} created.` })
                     .catch(error => res.status(500).send(error));
             }
         })

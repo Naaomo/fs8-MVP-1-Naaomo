@@ -1,8 +1,51 @@
 import React, {Component} from 'react';
 
 class PetSubmit extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            petType: [],
+            msg:"",
+            petname:"",
+            pettype:null,
+        }
+    }
     componentDidMount() {
-        //this.getpettype()
+        this.getPetType()
+    }
+
+    getPetType = (id) => {
+        //fetch(`/pets/${id}`)
+        fetch(`/pets/pettype`)
+            .then(res => res.json())
+            .then(res => {
+                console.log(res)
+                this.setState({petType: res});
+            });
+    };
+
+    handleInputChange = e => {
+        //const value = e.target.value
+        //const name = e.target.name
+        const { value, name } = e.target;
+
+        this.setState({
+            [name]: value
+        });
+    };
+
+    CreatePet = (e) => {
+        e.preventDefault()
+        fetch('/pets/createpet', {
+            headers: {'Content-Type': 'application/json'},
+            method: "POST",
+            body: JSON.stringify({petname: this.state.petname, pettype_id: this.state.pettype})
+        }).then(res => res.json()).then(res => {
+            console.log(res)
+            this.setState({msg: res.msg})
+        })
+
+
     }
 
     render() {
@@ -11,19 +54,22 @@ class PetSubmit extends Component {
                 <form>
                     <div className="form-row justify-content-center">
                         <div className="form-group col-md-4">
-                            <label htmlFor="inputPetname">Pet name</label>
-                            <input type="text" className="form-control" id="inputCity"/>
+                            <label>Pet name</label>
+                            <input type="text" className="form-control" name="petname" onChange={e => this.handleInputChange(e)}/>
                         </div>
                         <div className="form-group col-md-2">
-                            <label htmlFor="inputTypeofname">Type of animal</label>
-                            <select id="inputState" className="form-control">
+                            <label>Type of animal</label>
+                            <select className="form-control" name="pettype" onChange={e => this.handleInputChange(e)}>
                                 <option selected>Choose</option>
-                                <option>Cat</option>
+                                {this.state.petType.map(pettype => (
+                                    <option value={pettype.id}>{pettype.pet_type}</option>
+                                ) )}
+
                             </select>
                         </div>
                     </div>
                     <div className="container d-flex justify-content-center">
-                    <button type="submit" className="btn btn-success">Submit</button>
+                    <button type="submit" className="btn btn-success" onClick={(e) => this.CreatePet(e)}>Submit</button>
                     </div>
                 </form>
             </div>

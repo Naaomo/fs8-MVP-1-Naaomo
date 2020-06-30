@@ -8,6 +8,7 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './component/theme';
 import {GlobalStyles} from './component/DefaultTheme';
 //import components
+import ListofPets from "./component/ListofPets";
 import Catfacts from "./component/catfacts";
 import Checkbox from "./component/checkbox";
 import PetSubmit from "./component/PetSubmit";
@@ -49,32 +50,19 @@ export function LD() {
     );
 }
 
-
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pets: [],
             pet: {},
             loading: true,
-            light: true,
         }
     }
 
     componentDidMount() {
-        //this.getPets();
         this.getPet();
         // this.getCatFacts();
     }
-
-    // getPets = () => {
-    //     fetch(`/pets`)
-    //         .then(res => res.json())
-    //         .then(res => {
-    //
-    //             this.setState({pets: res});
-    //         });
-    // };
 
     //get a pet's stuff
     getPet = (id) => {
@@ -157,7 +145,8 @@ class App extends React.Component {
         return (
             <div>
             <LD/>
-            {/*<PetSubmit/>*/}
+            <PetSubmit/>
+            <ListofPets ListofPets = {this.state.pets}/>
                 {/*good practice way*/}
                 {/*<button*/}
                 {/*    className={this.state.light ? "btn btn-info" : "btn btn-primary bg-primary"}*/}
