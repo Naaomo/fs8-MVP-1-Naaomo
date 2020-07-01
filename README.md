@@ -4,6 +4,7 @@ Your one stop for all your pet's needs.
 ### Features includes:
 * Daily fed checkbox [100%]
 * Randomized cat facts [100%]
+* Being able to submit multiple pets [100%]
 * Toggle between light & dark theme [80%]
 ![LIGHT MODE](https://i.imgur.com/wALuF1c.jpg) ![DARK MODE](https://i.imgur.com/XgnrHaw.jpg)
 
@@ -29,26 +30,26 @@ Your one stop for all your pet's needs.
 
 # Userflow
 ####Current
-![Current user flow](https://i.imgur.com/h85Q4EL.jpg)
+![Current user flow](https://i.imgur.com/eoR8PAg.jpg)
 ####Final Mock up
 ![Full user flow](https://i.imgur.com/qzrDuUO.jpg)
 # Route
-![Route STEP 1](https://i.imgur.com/5qfLAH7.jpg)
+![Route STEP 2](https://i.imgur.com/jtzsk0B.jpg)
 # Database 
 ![DATABASE FULL]()
 ![DATABASE STEP 1](https://i.imgur.com/eG1oFsV.jpg)
 
-# Future feature [12%]
+![DATABASE STEP 2](https://i.imgur.com/zk0O7og.jpg)
+
+# Future feature [22%]
 ![FINAL](https://i.imgur.com/7M4XTUS.jpg)
 * User login interface 
-* Being able to submit multiple pets 
-* Being able to generate different animal's facts based on pet type [0%]
+* Being able to generate different animal's facts based on pet type 
 * Weight chart 
 * Vet scheduling 
 * Shop for pet's accessories & essentials 
 * Hiring dog walker, pet sitter
 * Search for pet hotel near you
 * Enable to contact nearby rescue shelter for strays
-
 
 _This is a student project that was created at [CodeOp](http://codeop.tech), a full stack development bootcamp in Barcelona._

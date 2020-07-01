@@ -2,9 +2,9 @@ var express = require('express');
 var router = express.Router();
 const db = require("../model/helper");
 
-/* GET the list of pets?(necessary?) */
+//GET list of pets
 router.get('/', function (req, res, next) {
-    db(`SELECT * FROM pets;`)
+    db(`SELECT * FROM pets INNER JOIN pettype ON pets.pettype_id = pettype.id;`)
         .then(result => {
             res.send(result.data)
         })
@@ -31,20 +31,30 @@ router.get('/pettype', function (req, res, next) {
 
 //CREATE new pet
 router.post("/createpet", (req, res, next) => {
-    db(
-        `INSERT INTO pets(petname, pettype_id) VALUES('${req.body.petname}','${req.body.pettype_id}');`
-    )
+    const query = `
+    INSERT INTO pets (petname, petimg, pettype_id)
+    VALUES (
+        '${req.body.petname}',
+        ${req.body.petimg ? `'${req.body.petimg}'` : "DEFAULT"},
+        '${req.body.pettype_id}'
+    );
+    `;
+
+    db(query)
         .then(results => {
             if (results.error) {
-                res.status(404).send({ error: results.error });
+                res.status(404).send({error: results.error});
             } else {
                 res
                     .status(200)
-                    .send({ msg: `${req.body.petname} created.` })
+                    .send({msg: `${req.body.petname} created!`})
                     .catch(error => res.status(500).send(error));
             }
         })
-        .catch(error => res.status(500).send(error));
+        .catch(error => {
+            console.error("ERROR:", error);
+            res.status(500).send(error)
+        });
 });
 
 //GET checkbox for a pet
@@ -52,6 +62,7 @@ router.post("/createpet", (req, res, next) => {
 router.get('/:id', function (req, res, next) {
     db(`SELECT * FROM fedcheckbox INNER JOIN pets ON fedcheckbox.pet_id = pets.id WHERE pet_id = ${req.params.id};`)
         .then(result => {
+            console.log(result);
             res.send({
                 pet_id: result.data[0].pet_id,
                 petname: result.data[0].petname,

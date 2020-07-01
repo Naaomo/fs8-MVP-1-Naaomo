@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import "./catfacts.css";
+import "./CatFacts.css";
 
 
 
-class Catfacts extends Component {
+class CatFacts extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -59,4 +59,4 @@ class Catfacts extends Component {
     }
 }
 
-export default Catfacts;
+export default CatFacts;

@@ -6,9 +6,10 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-    body: 'url("https://i.pinimg.com/originals/3e/68/f7/3e68f7c0e8bf0bb1ec2a3a5910126a40.gif") no-repeat #141514 bottom right',
+    body: 'url("https://media0.giphy.com/media/piXMiISN73f0wfbRqr/source.gif") no-repeat black bottom right',
     // text color is white
     // text: '#FAFAFA',
+    //background color:#141514
     text:'gray',
     toggleBorder: '#6B8096',
     gradient: 'linear-gradient(#091236, #1E215D)',

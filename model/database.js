@@ -19,14 +19,14 @@ con.connect(function (err) {
     console.log("Connected!");
 
     let sql =
-        "DROP TABLE if exists pets; CREATE TABLE pets(id INT NOT NULL AUTO_INCREMENT, petname VARCHAR(40) not null, PRIMARY KEY (id));";
+        "DROP TABLE if exists pets; CREATE TABLE pets(id int auto_increment, primary key(id), petname varchar(40) not null, petimg varchar(400) default 'https://webstockreview.net/images/footprint-clipart-pink-9.png' null, pettype_id int not null);";
     con.query(sql, function (err, result) {
         if (err) throw err;
         console.log("Table creation `pets` was successful!");
     });
 
         sql =
-            "INSERT INTO pets (petname) VALUE ("May"); " + "INSERT INTO pets (petname) VALUE ("Mimi")); ";
+            "INSERT INTO pets (id, petname, petimg, pettype_id) VALUES (1, 'Rex', 'https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', 1); ";
         con.query(sql, function (err, result) {
             if (err) throw err;
             console.log("Insert for `pets` was successful!");
@@ -42,19 +42,25 @@ con.connect(function (err) {
 
             console.log("Closing...");
 
-            // let sql =
-            //     "DROP TABLE if exists pettype; CREATE TABLE pettype(id INT NOT NULL AUTO_INCREMENT, petname VARCHAR(40) not null, PRIMARY KEY (id));";
-            // con.query(sql, function (err, result) {
-            //     if (err) throw err;
-            //     console.log("Table creation `pets` was successful!");
-            //
-            // });
-            // let sql =
-            //     "INSERT INTO pettype (pet_type) VALUE ("Cat"); " +
-            // "INSERT INTO pettype (pet_type) VALUE ("Dog")); ";
-            // con.query(sql, function (err, result) {
-            //     if (err) throw err;
-            //     console.log("Table creation `pets` was successful!");
+            sql =
+                "DROP TABLE if exists pettype; CREATE TABLE pettype(id INT NOT NULL AUTO_INCREMENT, pet_type VARCHAR(40) NOT NULL, PRIMARY KEY (id));";
+            con.query(sql, function (err, result) {
+                if (err) throw err;
+                console.log("Table creation `pettype` was successful!");
+
+            });
+            sql =
+                "INSERT INTO pettype (id, pet_type) VALUES (1, 'Cat');" +
+                "INSERT INTO pettype (id, pet_type) VALUES (2, 'Dog');" +
+                "INSERT INTO pettype (id, pet_type) VALUES (3, 'Hedgehog');" +
+                "INSERT INTO pettype (id, pet_type) VALUES (4, 'Oceanic');" +
+                "INSERT INTO pettype (id, pet_type) VALUES (5, 'Birds');" +
+                "INSERT INTO pettype (id, pet_type) VALUES (6, 'Reptiles ');" +
+                "INSERT INTO pettype (id, pet_type) VALUES (7, 'Exotics');" +
+                "INSERT INTO pettype (id, pet_type) VALUES (8, 'Others');"
+            con.query(sql, function (err, result) {
+                if (err) throw err;
+                console.log("Insert for `pettype` was successful!");
 
         });
 

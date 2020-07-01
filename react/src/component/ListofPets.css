@@ -1,0 +1,14 @@
+.btn-danger{
+    border-radius: 50%;
+}
+
+.img-thumbnail{
+    width:300px;
+    display: block;
+    margin: 0 auto;
+}
+
+/*not working :(*/
+.card{
+    transition: all 0.50s ease;
+}

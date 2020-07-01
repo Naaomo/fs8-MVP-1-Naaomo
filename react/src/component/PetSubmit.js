@@ -7,6 +7,7 @@ class PetSubmit extends Component {
             petType: [],
             msg:"",
             petname:"",
+            petimg:null,
             pettype:null,
         }
     }
@@ -34,12 +35,14 @@ class PetSubmit extends Component {
         });
     };
 
+    //add in msg alert
+    //alert when they didn't insert a name or type of animal
     CreatePet = (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         fetch('/pets/createpet', {
             headers: {'Content-Type': 'application/json'},
             method: "POST",
-            body: JSON.stringify({petname: this.state.petname, pettype_id: this.state.pettype})
+            body: JSON.stringify({petname: this.state.petname, petimg: this.state.petimg, pettype_id: this.state.pettype})
         }).then(res => res.json()).then(res => {
             console.log(res)
             this.setState({msg: res.msg})
@@ -66,6 +69,12 @@ class PetSubmit extends Component {
                                 ) )}
 
                             </select>
+                        </div>
+                    </div>
+                    <div className="form-row justify-content-center">
+                        <div className="form-group col-md-6">
+                            <label>Pet image</label>
+                            <input type="text" className="form-control" name="petimg" onChange={e => this.handleInputChange(e)}/>
                         </div>
                     </div>
                     <div className="container d-flex justify-content-center">

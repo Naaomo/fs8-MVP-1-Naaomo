@@ -9,8 +9,8 @@ import { lightTheme, darkTheme } from './component/theme';
 import {GlobalStyles} from './component/DefaultTheme';
 //import components
 import ListofPets from "./component/ListofPets";
-import Catfacts from "./component/catfacts";
-import Checkbox from "./component/checkbox";
+import CatFacts from "./component/CatFacts";
+import Checkbox from "./component/Checkbox";
 import PetSubmit from "./component/PetSubmit";
 //import extra
 import Swal from 'sweetalert2';
@@ -67,7 +67,7 @@ class App extends React.Component {
     //get a pet's stuff
     getPet = (id) => {
         //fetch(`/pets/${id}`)
-        fetch(`/pets/2`)
+        fetch(`/pets/1`)
             .then(res => res.json())
             .then(res => {
                 // console.log(res.days.day1)
@@ -78,7 +78,7 @@ class App extends React.Component {
 
     updateCheckbox = day => {
         //fetch(`/pets/update/${id}`, {
-        fetch(`/pets/update/2/${day}`, {
+        fetch(`/pets/update/1/${day}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -103,7 +103,7 @@ class App extends React.Component {
     }
 
     resetCheckbox = () => {
-        fetch(`/pets/reset/2`, {
+        fetch(`/pets/reset/1`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json"
@@ -157,8 +157,7 @@ class App extends React.Component {
                     <Checkbox UpdateCheckbox ={Checkedday => this.updateCheckbox(Checkedday)}
                               loading = {this.state.loading}
                               Checkboxes = {this.state.pet}/>
-                </div>
-                <div><Catfacts/></div>
+                </div>                <div><CatFacts/></div>
             </div>
         );
     }
