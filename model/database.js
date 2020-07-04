@@ -25,44 +25,44 @@ con.connect(function (err) {
         console.log("Table creation `pets` was successful!");
     });
 
-        sql =
-            "INSERT INTO pets (id, petname, petimg, pettype_id) VALUES (1, 'Rex', 'https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', 1); ";
-        con.query(sql, function (err, result) {
-            if (err) throw err;
-            console.log("Insert for `pets` was successful!");
+    sql =
+        "INSERT INTO pets (id, petname, petimg, pettype_id) VALUES (1, 'Rex', 'https://images.pexels.com/photos/617278/pexels-photo-617278.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500', 1); ";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Insert for `pets` was successful!");
 
-        });
-
-
-        sql =
-            "DROP TABLE if exists fedcheckbox; CREATE TABLE fedcheckbox(id INT NOT NULL AUTO_INCREMENT, pet_id INT NOT NULL, Monday BOOLEAN, Tuesday BOOLEAN, Wednesday BOOLEAN, Thursday BOOLEAN,Friday BOOLEAN, Saturday BOOLEAN, Sunday BOOLEAN, PRIMARY KEY (id));";
-        con.query(sql, function (err, result) {
-            if (err) throw err;
-            console.log("Table creation `fedcheckbox` was successful!");
-
-            console.log("Closing...");
-
-            sql =
-                "DROP TABLE if exists pettype; CREATE TABLE pettype(id INT NOT NULL AUTO_INCREMENT, pet_type VARCHAR(40) NOT NULL, PRIMARY KEY (id));";
-            con.query(sql, function (err, result) {
-                if (err) throw err;
-                console.log("Table creation `pettype` was successful!");
-
-            });
-            sql =
-                "INSERT INTO pettype (id, pet_type) VALUES (1, 'Cat');" +
-                "INSERT INTO pettype (id, pet_type) VALUES (2, 'Dog');" +
-                "INSERT INTO pettype (id, pet_type) VALUES (3, 'Hedgehog');" +
-                "INSERT INTO pettype (id, pet_type) VALUES (4, 'Oceanic');" +
-                "INSERT INTO pettype (id, pet_type) VALUES (5, 'Birds');" +
-                "INSERT INTO pettype (id, pet_type) VALUES (6, 'Reptiles ');" +
-                "INSERT INTO pettype (id, pet_type) VALUES (7, 'Exotics');" +
-                "INSERT INTO pettype (id, pet_type) VALUES (8, 'Others');"
-            con.query(sql, function (err, result) {
-                if (err) throw err;
-                console.log("Insert for `pettype` was successful!");
-
-        });
-
-        con.end();
     });
+
+
+    sql =
+        "DROP TABLE if exists fedcheckbox; CREATE TABLE fedcheckbox(id INT NOT NULL AUTO_INCREMENT, pet_id INT NOT NULL, Monday BOOLEAN, Tuesday BOOLEAN, Wednesday BOOLEAN, Thursday BOOLEAN,Friday BOOLEAN, Saturday BOOLEAN, Sunday BOOLEAN, PRIMARY KEY (id));";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Table creation `fedcheckbox` was successful!");
+
+    });
+    sql =
+        "DROP TABLE if exists pettype; CREATE TABLE pettype(id INT NOT NULL AUTO_INCREMENT, pet_type VARCHAR(40) NOT NULL, PRIMARY KEY (id));";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Table creation `pettype` was successful!");
+
+    });
+    sql =
+        "INSERT INTO pettype (id, pet_type) VALUES (1, 'Cat');" +
+        "INSERT INTO pettype (id, pet_type) VALUES (2, 'Dog');" +
+        "INSERT INTO pettype (id, pet_type) VALUES (3, 'Hedgehog');" +
+        "INSERT INTO pettype (id, pet_type) VALUES (4, 'Oceanic');" +
+        "INSERT INTO pettype (id, pet_type) VALUES (5, 'Birds');" +
+        "INSERT INTO pettype (id, pet_type) VALUES (6, 'Reptiles ');" +
+        "INSERT INTO pettype (id, pet_type) VALUES (7, 'Exotics');" +
+        "INSERT INTO pettype (id, pet_type) VALUES (8, 'Others');"
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Insert for `pettype` was successful!");
+
+    });
+    
+    console.log("Closing...");
+    con.end();
+});

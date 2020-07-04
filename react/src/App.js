@@ -37,7 +37,7 @@ export function LD() {
                     <label className="switch">
                         <input type="checkbox" id="togBtn" onClick={toggleTheme}/>
                         <div className="slider round">
-                            <span className="Light">🌞</span>
+                            <span className="Light" role="img">🌞</span>
                             <span className="Dark">🌙</span>
                         </div>
                     </label>

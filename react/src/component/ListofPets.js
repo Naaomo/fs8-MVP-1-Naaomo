@@ -52,10 +52,10 @@ class ListofPets extends Component {
                                             onClick={(e) => this.closeBox(e)}>X</button>
                                     </span>
                                 </h5>
-                                <img src={this.state.boopedimg} className="card-img-top img-thumbnail rounded"/>
+                                <img src={this.state.boopedimg} alt={this.state.boopedname} className="card-img-top img-thumbnail rounded"/>
                                 <p className="card-text">{this.state.boopedname}</p>
                                 <p className="card-text"> Type of pet: {this.state.boopedtype}</p>
-                                <a href="/${this.state.boopedid}" className="btn btn-primary m-2">Bring me to
+                                <a href={`/${this.state.boopedid}`} className="btn btn-primary m-2">Bring me to
                                     checkbox</a>
                                 <a href="#" className="btn btn-primary m-2">Bring me to weight chart</a>
                                 <a href="#" className="btn btn-primary m-2">Bring me to vet schedule</a>
