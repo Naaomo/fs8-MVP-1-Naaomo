@@ -22,7 +22,7 @@ module.exports = async function db(query) {
 
         con.connect(function (err) {
             if (err) throw err;
-            console.log("Connected!");
+            console.log("Database Connected!");
 
             con.query(query, function (err, result) {
                 if (err) {

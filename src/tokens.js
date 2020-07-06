@@ -1,4 +1,5 @@
 const { sign } = require('jsonwebtoken');
+require("dotenv").config();
 
 
 const createAccessToken = userID => {
@@ -17,4 +18,23 @@ const createRefreshToken = userID => {
     );
 }
 
-module.export = {createAccessToken, createRefreshToken}
+const sendAccessToken = (res, req, accessToken) => {
+    res.send({
+        accessToken,
+        email: req.body.email
+    })
+}
+
+const sendRefreshToken = (res, refreshToken) => {
+    res.cookie('refreshToken', refreshToken, {
+        httpOnly: true,
+        path: '/refresh_token',
+    })
+}
+
+module.exports = {
+    createAccessToken,
+    createRefreshToken,
+    sendAccessToken,
+    sendRefreshToken
+}
