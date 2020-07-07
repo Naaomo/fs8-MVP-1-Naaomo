@@ -125,7 +125,7 @@ router.post('/protected', async (req, res) => {
 //TODO: Get a new access token with a refresh token
 router.post('/refresh_token', async (req, res) => {
     // Get refesh token from the cookie of the request
-    const token = req.cookies.valueOf();
+    const token = req.cookies.refreshToken;
     console.log(`REFRESH TOKEN: ${token}`);
     // if there isn't a token in the request cookie, return an empty access token
     if(!token) return res.send({ accessToken: `${token}`});

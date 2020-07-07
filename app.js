@@ -17,6 +17,7 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
+usersRouter.use(cookieParser());
 
 //don't need to put index cuz not using.
 app.use('/', indexRouter);
