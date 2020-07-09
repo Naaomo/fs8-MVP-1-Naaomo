@@ -15,6 +15,7 @@ body {
     font-weight: 700;
     align-items: center;
     background: ${({ theme }) => theme.body};
+    background-color: ${({theme}) => theme.backgroundColor};
     color: ${({ theme }) => theme.text};
     transition: all 0.25s linear;
     }

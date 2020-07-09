@@ -16,24 +16,37 @@ class CatFacts extends Component {
     }
 
     //TODO Fix loading
-    getCatFacts() {
-        let url = "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=1";
-        fetch(url)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
-                } else {
-                    console.log(response)
-                    return response.json();
-                }
-            })
-            .then(data => {
-                this.setState({text: data.text})
-            })
-            .catch(e => {
-                console.log('There has been a problem with your fetch operation: ' + e.message);
-            });
+    //ASYNC Method
+    async getCatFacts(){
+        const url = "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=1"
+        const res = await fetch(url)
+        if (!res.ok) throw new Error ("fail")
+
+        const data = await res.json()
+        console.log(data)
+
+        this.setState({text: data.text})
     }
+
+    //fetch method
+    // getCatFacts() {
+    //     let url = "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=1";
+    //     fetch(url)
+    //         .then(response => {
+    //             if (!response.ok) {
+    //                 throw new Error(`HTTP error! status: ${response.status}`);
+    //             } else {
+    //                 console.log(response)
+    //                 return response.json();
+    //             }
+    //         })
+    //         .then(data => {
+    //             this.setState({text: data.text})
+    //         })
+    //         .catch(e => {
+    //             console.log('There has been a problem with your fetch operation: ' + e.message);
+    //         });
+    // }
 
     render() {
         return (

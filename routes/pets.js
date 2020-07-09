@@ -57,6 +57,7 @@ router.post("/createpet", (req, res, next) => {
         });
 });
 
+//Can I just fetch this within the get?
 //GET checkbox for a pet
 //just GET EVERYTHING from table
 router.get('/:id', function (req, res, next) {

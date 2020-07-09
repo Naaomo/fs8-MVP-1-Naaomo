@@ -37,7 +37,8 @@ class ListofPets extends Component {
             boopedname: "",
         })
     }
-    //TODO fix the link to the checkbox
+
+    //TODO fix the link to the checkbox [REACT ROUTER?]
 
     render() {
         return (

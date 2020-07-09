@@ -6,14 +6,15 @@ export const lightTheme = {
 }
 
 export const darkTheme = {
-    body: 'url("https://media0.giphy.com/media/piXMiISN73f0wfbRqr/source.gif") no-repeat black bottom right',
+    body: 'url("https://media0.giphy.com/media/piXMiISN73f0wfbRqr/source.gif") no-repeat bottom right',
     // text color is white
     // text: '#FAFAFA',
-    //background color:#141514
+    //backgroundColor: '#141514',
+    backgroundColor: 'black',
     text:'gray',
     toggleBorder: '#6B8096',
     gradient: 'linear-gradient(#091236, #1E215D)',
 }
-
+// TODO LEARN ABOUT FUNCTION & HOOKS
 // TODO FIX THE TOGGLE BUTTON
 // TODO FIX DARK THEME

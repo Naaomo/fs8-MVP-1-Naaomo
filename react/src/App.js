@@ -96,6 +96,7 @@ class App extends React.Component {
     }
 
     //ResetCheckbox
+    //TODO merge checkbox & pet type upon create
     componentDidUpdate() {
         if (Object.values(this.state.pet.days).every(day => day)) {
             this.resetCheckbox()
