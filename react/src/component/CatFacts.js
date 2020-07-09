@@ -28,25 +28,6 @@ class CatFacts extends Component {
         this.setState({text: data.text})
     }
 
-    //fetch method
-    // getCatFacts() {
-    //     let url = "https://cat-fact.herokuapp.com/facts/random?animal_type=cat&amount=1";
-    //     fetch(url)
-    //         .then(response => {
-    //             if (!response.ok) {
-    //                 throw new Error(`HTTP error! status: ${response.status}`);
-    //             } else {
-    //                 console.log(response)
-    //                 return response.json();
-    //             }
-    //         })
-    //         .then(data => {
-    //             this.setState({text: data.text})
-    //         })
-    //         .catch(e => {
-    //             console.log('There has been a problem with your fetch operation: ' + e.message);
-    //         });
-    // }
 
     render() {
         return (
