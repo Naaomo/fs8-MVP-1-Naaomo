@@ -41,6 +41,13 @@ con.connect(function (err) {
         console.log("Table creation `fedcheckbox` was successful!");
 
     });
+
+    sql = "INSERT INTO fedcheckbox(pet_id, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) VALUES(1,0,0,0,0,0,0,0);";
+    con.query(sql, function(err, result){
+        if(err) throw err;
+        console.log("Insert for `fedcheckox`was successful!");
+    });
+
     sql =
         "DROP TABLE if exists pettype; CREATE TABLE pettype(id INT NOT NULL AUTO_INCREMENT, pet_type VARCHAR(40) NOT NULL, PRIMARY KEY (id));";
     con.query(sql, function (err, result) {
@@ -61,6 +68,13 @@ con.connect(function (err) {
         if (err) throw err;
         console.log("Insert for `pettype` was successful!");
 
+    });
+
+    sql =
+        "DROP TABLE IF EXISTS users; CREATE TABLE users (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, name VARCHAR(50) NULL, email VARCHAR(200) NOT NULL, password VARCHAR(200) NOT NULL, refresh_token VARCHAR(500) NULL);";
+    con.query(sql, function (err, result) {
+        if (err) throw err;
+        console.log("Table creation `users` was successful!");
     });
     
     console.log("Closing...");
